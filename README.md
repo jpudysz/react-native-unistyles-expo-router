@@ -10,4 +10,5 @@ Features:
 
 Demo:
 
-<video src='./demo.mp4' />
+https://github.com/jpudysz/react-native-unistyles-expo-router/assets/9088288/f3a00904-ec33-4819-8c04-86c62a1bc520
+
