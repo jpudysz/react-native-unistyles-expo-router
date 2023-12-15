@@ -1,7 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable, useColorScheme } from 'react-native';
-
+import { useStyles } from 'react-native-unistyles'
 import Colors from '../../constants/Colors';
 
 /**
@@ -15,17 +15,25 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { theme } = useStyles()
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        headerStyle: {
+          backgroundColor: theme.colors.background,
+          borderColor: theme.colors.accent,
+          borderBottomColor: theme.colors.accent,
+        },
+        tabBarActiveBackgroundColor: theme.colors.background,
+        tabBarInactiveBackgroundColor: theme.colors.background,
+        tabBarActiveTintColor: theme.colors.accent,
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Tab One',
+          headerTintColor: theme.colors.typography,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -34,7 +42,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="info-circle"
                     size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
+                    color={theme.colors.typography}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -47,6 +55,7 @@ export default function TabLayout() {
         name="two"
         options={{
           title: 'Tab Two',
+          headerTintColor: theme.colors.typography,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
